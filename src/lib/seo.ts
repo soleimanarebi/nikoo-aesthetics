@@ -56,15 +56,13 @@ export function localBusinessSchema() {
     priceRange: "£££",
     address: {
       "@type": "PostalAddress",
-      streetAddress: `${site.address.line1}, ${site.address.line2}`,
-      addressLocality: site.address.city || site.address.line2,
-      postalCode: site.address.postcode,
+      addressLocality: site.address.area,
+      addressRegion: site.address.region,
       addressCountry: "GB",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: site.address.lat,
-      longitude: site.address.lng,
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: `${site.address.area}, ${site.address.region}, ${site.address.country}`,
     },
     sameAs: [site.instagram],
     openingHoursSpecification: site.hours

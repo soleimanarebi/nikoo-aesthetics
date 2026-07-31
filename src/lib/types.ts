@@ -81,13 +81,9 @@ export interface SiteSettings {
   googleMapsUrl?: string;
   googleMapsEmbedSrc?: string;
   address: {
-    line1: string;
-    line2: string;
-    city: string;
-    postcode: string;
+    area: string;
+    region: string;
     country: string;
-    lat: number;
-    lng: number;
   };
   hours: { day: string; time: string }[];
 }

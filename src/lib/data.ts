@@ -103,13 +103,11 @@ export function getAftercareDocuments(): AftercareDocument[] {
 }
 
 /**
- * Formats the clinic address as a list of non-empty display lines —
- * gracefully skips city/postcode when either is blank, so address data
- * with fewer fields (e.g. no separate "city") never renders an awkward
- * blank line.
+ * Formats the clinic's service area as a list of display lines. The
+ * business is intentionally not tied to a public street address or
+ * postcode — only a general service area is shown anywhere on the site.
  */
 export function getAddressLines(site: SiteSettings): string[] {
-  const { line1, line2, city, postcode } = site.address;
-  const cityPostcode = [city, postcode].filter(Boolean).join(" ");
-  return [line1, line2, cityPostcode].filter(Boolean);
+  const { area, region, country } = site.address;
+  return [area, [region, country].filter(Boolean).join(", ")].filter(Boolean);
 }

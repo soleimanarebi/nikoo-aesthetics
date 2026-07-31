@@ -28,13 +28,6 @@ export default function BookingPage() {
         <Suspense fallback={<p className="text-ink/40 font-body text-sm">Loading calendar…</p>}>
           <BookingCalendarSection hours={site.hours} services={services} />
         </Suspense>
-
-        <p className="mt-16 text-ink/40 font-body text-xs max-w-2xl">
-          Availability shown reflects our opening hours (Friday and Saturday, 09:00–17:00,
-          with no appointments between 13:00–14:00 for a rest break).
-          This calendar stores your selection on this device — we&apos;ll confirm your
-          appointment directly by phone or email shortly after you book.
-        </p>
       </section>
     </>
   );

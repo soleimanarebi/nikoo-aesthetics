@@ -6,16 +6,12 @@
   "email": "nikooaesthetics@gmail.com",
   "instagram": "https://instagram.com/nikoo.aesthetics",
   "instagramHandle": "@nikoo.aesthetics",
-  "googleMapsUrl": "https://maps.app.goo.gl/Dop1SKdASTirCupm6",
-  "googleMapsEmbedSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2251.821430979454!2d-0.37672342387836527!3d51.41511171744178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487674b3510db71d%3A0x3e7bc14788dce254!2s69A%20Oldfield%20Rd%2C%20Hampton%20TW12%202HP!5e1!3m2!1sen!2suk!4v1785341579991!5m2!1sen!2suk",
+  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Richmond+upon+Thames,+Greater+London,+United+Kingdom",
+  "googleMapsEmbedSrc": "https://www.google.com/maps?q=Richmond+upon+Thames,+Greater+London,+United+Kingdom&output=embed",
   "address": {
-    "line1": "Richmond",
-    "line2": "Hampton",
-    "city": "",
-    "postcode": "TW12 2HP",
-    "country": "United Kingdom",
-    "lat": 51.4151,
-    "lng": -0.3767
+    "area": "Richmond upon Thames",
+    "region": "Greater London",
+    "country": "United Kingdom"
   },
   "hours": [
     { "day": "Monday", "time": "Closed" },

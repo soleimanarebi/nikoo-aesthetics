@@ -88,7 +88,7 @@ export function emailLayout({ previewText, heading, bodyHtml }: EmailLayoutOptio
               <td style="padding: 32px; margin-top: 16px;">
                 <div style="border-top: 1px solid ${BORDER}; padding-top: 24px; text-align:center; font-family: 'Helvetica Neue', Arial, sans-serif; font-size:12px; line-height:1.8; color:${MUTED};">
                   <p style="margin:0 0 6px; font-family: Georgia, serif; font-size:14px; color:${INK};">${escapeHtml(site.name)}</p>
-                  <p style="margin:0 0 4px;">${escapeHtml(site.address.line1)}, ${escapeHtml(site.address.line2)}, ${escapeHtml(site.address.postcode)}</p>
+                  <p style="margin:0 0 4px;">${escapeHtml(site.address.area)}, ${escapeHtml(site.address.region)}, ${escapeHtml(site.address.country)}</p>
                   <p style="margin:0 0 4px;">
                     <a href="tel:${escapeHtml(site.phone.replace(/\s/g, ""))}" style="color:${MUTED}; text-decoration:none;">${escapeHtml(site.phone)}</a>
                     &nbsp;·&nbsp;
