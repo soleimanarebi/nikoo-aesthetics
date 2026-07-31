@@ -103,9 +103,7 @@ export function bookingClientEmail(data: BookingEmailData): { subject: string; h
         `Thank you for booking with ${site.name}. We've received your appointment request with the following details:`
       )}
       ${rows}
-      ${paragraph(
-        `This is a request, not a final confirmation — our team will contact you shortly by phone or email to confirm your appointment and take any final details ahead of your visit.`
-      )}
+      ${paragraph(`Thank you for choosing ${site.name}.`)}
       ${ctaButton("Manage Your Booking", manageUrl)}
       ${paragraph(
         `Need to cancel or change your date? Use the button above, or reply to this email — either way, please let us know as early as possible so we can offer your slot to another client.`
