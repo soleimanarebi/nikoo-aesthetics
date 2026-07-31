@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import treatmentFamilies from "@/data/treatment-families.json";
 import type { SiteSettings, BookingServiceCategory, BookingServiceItem, TreatmentFamily } from "@/lib/types";
 
@@ -128,6 +128,10 @@ export default function BookingCalendar({
   const [form, setForm] = useState({ name: "", surname: "", email: "", phone: "", notes: "", agreed: false });
   const [confirmed, setConfirmed] = useState<{ date: string; time: string } | null>(null);
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const formRenderedAt = useRef(Date.now());
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     try {
@@ -210,20 +214,62 @@ export default function BookingCalendar({
     setStep(2);
   }
 
-  function handleConfirm(e: React.FormEvent) {
+  async function handleConfirm(e: React.FormEvent) {
     e.preventDefault();
     setSubmitAttempted(true);
+    setSubmitError("");
     if (!selectedDate || !selectedTime || !form.name || !form.email || !form.agreed) return;
 
+    setSubmitting(true);
+
     const key = toDateKey(selectedDate);
-    const updated = { ...bookings, [key]: [...(bookings[key] ?? []), selectedTime] };
-    setBookings(updated);
+
     try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${form.name} ${form.surname}`.trim(),
+          email: form.email,
+          phone: form.phone,
+          treatment: item?.name ?? "Not specified",
+          category: category?.category ?? "Not specified",
+          date: key,
+          time: selectedTime,
+          message: form.notes,
+          // Spam-prevention fields — see src/lib/validation.ts
+          honeypot: honeypotRef.current?.value ?? "",
+          formRenderedAt: formRenderedAt.current,
+        }),
+      });
+      const result = await res.json();
+
+      if (!res.ok || !result.success) {
+        setSubmitError(
+          result.message ?? "Something went wrong. Please try again or contact us directly."
+        );
+        setSubmitting(false);
+        return;
+      }
+
+      // Only mark the slot as taken (for the calendar's strike-through) once
+      // the booking request has actually been sent successfully.
+      const updated = { ...bookings, [key]: [...(bookings[key] ?? []), selectedTime] };
+      setBookings(updated);
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      } catch {
+        // storage may be unavailable — booking still confirms for this session
+      }
+
+      setConfirmed({ date: key, time: selectedTime });
     } catch {
-      // storage may be unavailable — booking still confirms for this session
+      setSubmitError(
+        "We couldn't reach the server. Please check your connection and try again, or contact us directly."
+      );
+    } finally {
+      setSubmitting(false);
     }
-    setConfirmed({ date: key, time: selectedTime });
   }
 
   function startOver() {
@@ -234,6 +280,8 @@ export default function BookingCalendar({
     setSelectedTime(null);
     setConfirmed(null);
     setSubmitAttempted(false);
+    setSubmitError("");
+    formRenderedAt.current = Date.now();
     setForm({ name: "", surname: "", email: "", phone: "", notes: "", agreed: false });
   }
 
@@ -556,11 +604,12 @@ export default function BookingCalendar({
               </div>
               <div>
                 <label htmlFor="booking-phone" className="text-xs tracking-widest2 uppercase text-ink/50 font-body">
-                  Phone
+                  Phone *
                 </label>
                 <input
                   id="booking-phone"
                   type="tel"
+                  required
                   value={form.phone}
                   onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                   className="w-full bg-transparent border-b border-ink/20 py-3 font-body text-ink focus:border-gold outline-none transition-colors mt-2"
@@ -610,6 +659,26 @@ export default function BookingCalendar({
               </p>
             )}
 
+            {submitError && (
+              <p role="alert" className="text-red-700 font-body text-xs -mt-2">
+                {submitError}
+              </p>
+            )}
+
+            {/* Honeypot field — hidden from real visitors, left blank by
+                humans, often auto-filled by bots. Server rejects any
+                submission where this isn't empty. */}
+            <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+              <label htmlFor="booking-company">Company</label>
+              <input
+                id="booking-company"
+                ref={honeypotRef}
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             <div className="flex gap-4">
               <button
                 type="button"
@@ -620,9 +689,10 @@ export default function BookingCalendar({
               </button>
               <button
                 type="submit"
-                className="px-8 py-4 rounded-full bg-ink text-warm font-body text-sm tracking-wide hover:bg-gold hover:text-ink transition-colors duration-300"
+                disabled={submitting}
+                className="px-8 py-4 rounded-full bg-ink text-warm font-body text-sm tracking-wide hover:bg-gold hover:text-ink transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Submit
+                {submitting ? "Submitting…" : "Submit"}
               </button>
             </div>
           </form>

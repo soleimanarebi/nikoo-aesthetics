@@ -1,18 +1,59 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const inputClasses =
   "w-full bg-transparent border-b border-ink/20 py-3 font-body text-ink placeholder:text-ink/45 focus:border-gold outline-none transition-colors";
 
-export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+type Status = "idle" | "submitting" | "sent" | "error";
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+export default function ContactForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const formRenderedAt = useRef(Date.now());
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // This form is presentational. Connect it to your preferred form
-    // handler (e.g. Netlify Forms, Formspree) — see the README.
-    setStatus("sent");
+    setStatus("submitting");
+    setErrorMessage("");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const payload = {
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      phone: String(data.get("phone") ?? ""),
+      message: String(data.get("message") ?? ""),
+      // Spam-prevention fields — see src/lib/validation.ts
+      honeypot: String(data.get("company") ?? ""),
+      formRenderedAt: formRenderedAt.current,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json();
+
+      if (!res.ok || !result.success) {
+        setStatus("error");
+        setErrorMessage(
+          result.message ?? "Something went wrong. Please try again or contact us directly."
+        );
+        return;
+      }
+
+      setStatus("sent");
+      form.reset();
+    } catch {
+      setStatus("error");
+      setErrorMessage(
+        "We couldn't reach the server. Please check your connection and try again, or contact us directly."
+      );
+    }
   }
 
   if (status === "sent") {
@@ -23,7 +64,8 @@ export default function ContactForm() {
       >
         <p className="font-display text-xl text-ink mb-2">Thank you</p>
         <p className="text-ink/65 font-body text-sm">
-          Your message has been received. We&apos;ll be in touch shortly.
+          Your message has been received. We&apos;ll be in touch shortly, and a confirmation
+          email is on its way to you now.
         </p>
       </div>
     );
@@ -36,6 +78,14 @@ export default function ContactForm() {
       className="flex flex-col gap-8"
       aria-label="Contact form"
     >
+      {/* Honeypot field — hidden from real visitors via CSS, left blank by
+          humans, often auto-filled by bots. Server rejects any submission
+          where this isn't empty. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+        <label htmlFor="company">Company</label>
+        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-8">
         <div>
           <label htmlFor="name" className="text-xs tracking-widest2 uppercase text-ink/65 font-body">
@@ -71,11 +121,18 @@ export default function ContactForm() {
         />
       </div>
 
+      {status === "error" && (
+        <p role="alert" className="text-sm font-body text-red-700">
+          {errorMessage}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="self-start px-8 py-4 rounded-full bg-ink text-warm font-body text-sm tracking-wide hover:bg-gold hover:text-ink transition-colors duration-300"
+        disabled={status === "submitting"}
+        className="self-start px-8 py-4 rounded-full bg-ink text-warm font-body text-sm tracking-wide hover:bg-gold hover:text-ink transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Send Message
+        {status === "submitting" ? "Sending…" : "Send Message"}
       </button>
     </form>
   );

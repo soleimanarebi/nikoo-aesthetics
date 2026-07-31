@@ -8,3 +8,9 @@
 [build.environment]
   NEXT_PUBLIC_BOOKING_URL = "https://booking.consentz.com/nikoo-aesthetics"
   NEXT_PUBLIC_SITE_URL = "https://www.nikooaesthetics.co.uk"
+
+# NOTE: RESEND_API_KEY, ADMIN_EMAIL and FROM_EMAIL are NOT set here on
+# purpose — this file is committed to git, so secrets must never live here.
+# Set them in Netlify's dashboard instead: Site settings → Environment
+# variables. See README.md → "Email System" for the full list and setup
+# instructions.

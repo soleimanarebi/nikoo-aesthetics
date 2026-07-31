@@ -129,6 +129,9 @@ before launch.
    In Netlify: **Site settings → Environment variables**, add:
    - `NEXT_PUBLIC_BOOKING_URL` → your real booking platform link
    - `NEXT_PUBLIC_SITE_URL` → your live production domain
+   - `RESEND_API_KEY` → from your Resend dashboard
+   - `ADMIN_EMAIL` → clinic inbox that should receive booking/enquiry notifications
+   - `FROM_EMAIL` → the verified sending address (see "Email System" below)
 
 5. **Deploy**
    Click **Deploy site**. Every push to `main` will automatically trigger a new deployment.
@@ -158,23 +161,186 @@ npm run build   # Type-checks, lints, and produces the production build
 
 Both run clean with zero errors/warnings as of this version.
 
-## Contact Form
+## Email System (Booking & Contact Forms)
 
-`src/components/ContactForm.tsx` is presentational by default (it shows a
-confirmation state on submit but doesn't send anywhere). Connect it to a real
-form handler before launch — e.g. [Netlify Forms](https://docs.netlify.com/forms/setup/)
-(add a `data-netlify="true"` attribute to the `<form>` and a hidden
-`form-name` input) or a service like Formspree.
+Both the Booking form (`/booking`) and the Contact form (`/contact`) send
+real emails via [Resend](https://resend.com) through server-side Next.js
+API routes — nothing runs in the browser, and no key is ever exposed to
+visitors.
+
+### How it works
+
+```
+src/lib/email/
+  layout.ts          Shared branded HTML wrapper (logo, cream/white palette,
+                      footer) used by every email — the single place to
+                      change the look of all clinic emails at once
+  templates.ts        One function per email: booking/contact/cancellation/
+                       reschedule × admin/client — each returns { subject, html }
+  resend.ts            Resend client + low-level sendEmail() wrapper. Reads
+                        RESEND_API_KEY / ADMIN_EMAIL / FROM_EMAIL from env vars
+  send.ts               sendBookingEmails() / sendContactEmails() /
+                         sendBookingCancellationEmails() /
+                         sendBookingRescheduleEmails() — each sends the
+                         admin notification + client confirmation (BCC'd to
+                         admin) in parallel via the shared sendMirroredPair()
+  booking-token.ts       Encodes booking details into the "Manage Your
+                          Booking" email link (no database required)
+
+src/lib/validation.ts   zod schemas for all four forms + spam detection
+                        (honeypot field + minimum fill-time check)
+
+src/app/api/booking/route.ts              POST — new booking
+src/app/api/booking/cancel/route.ts       POST — cancellation
+src/app/api/booking/reschedule/route.ts   POST — reschedule request
+src/app/api/contact/route.ts              POST — contact form
+
+src/app/booking/manage/page.tsx      "Manage Your Booking" page (linked
+src/components/BookingManage.tsx     from the confirmation email) — cancel
+                                      or request a reschedule
+```
+
+Every submission:
+1. Is validated server-side with zod (the real gate — client-side
+   validation is just for UX, since anyone can POST to these routes
+   directly)
+2. Is checked for spam signals (a hidden honeypot field bots tend to fill
+   in, and a minimum time-since-page-load check) — spam submissions get a
+   normal-looking success response but no email is sent, so bots can't
+   tell they were filtered
+3. Triggers two emails in parallel: one to `ADMIN_EMAIL` with all the
+   submitted details (and `Reply-To` set to the visitor's email, so you
+   can hit "reply" directly), and one branded confirmation to the visitor
+4. Returns a clear success/error JSON response, which the form displays
+
+Both forms in `src/components/BookingCalendar.tsx` and
+`src/components/ContactForm.tsx` show a loading state while submitting,
+and a specific error message (not a generic failure) if sending fails —
+e.g. "please call or WhatsApp us directly" — so a visitor is never left
+wondering if their booking went through.
+
+### Cancellation & Reschedule
+
+Every booking confirmation email includes a **"Manage Your Booking"** link
+that takes the client to `/booking/manage`, where they can:
+- **Cancel** their appointment (with an optional reason)
+- **Request a reschedule** (they enter a preferred new date/time)
+
+Both actions send a confirmation to the client and a dedicated
+notification to the clinic (`/api/booking/cancel` and
+`/api/booking/reschedule`), following the exact same validated,
+spam-protected, error-handled pattern as the original booking and contact
+routes.
+
+The booking details are encoded directly into the "Manage Your Booking"
+link (`src/lib/email/booking-token.ts`) rather than looked up from a
+database — there's no live calendar/PMS behind this site yet (see
+`PROJECT_ROADMAP.md`), so a cancellation or reschedule request here always
+results in an email to the clinic for manual confirmation; it doesn't
+automatically alter a real appointment. If this site is later connected to
+a real booking backend (e.g. Consentz), swap this token for a real
+booking-ID lookup.
+
+### Every Client Email Is Mirrored to the Clinic
+
+In addition to its own dedicated "action needed" notification (New
+Booking, New Enquiry, Cancellation, Reschedule Request), **every email
+sent to a client is also BCC'd to `ADMIN_EMAIL`** — booking confirmations,
+contact confirmations, cancellation confirmations, and reschedule
+confirmations alike. This means the clinic always has an exact record of
+what every client received, not just a summary. This is handled centrally
+in `sendMirroredPair()` (`src/lib/email/send.ts`), so any future email
+type automatically inherits the same mirroring — nothing extra to
+remember when adding new email flows.
+
+### Adding future email types
+
+The system is deliberately structured so reminder emails, cancellation
+emails, or an "appointment approved" email can be added without touching
+existing code:
+
+1. Add a new template function to `templates.ts` (reuse `emailLayout`,
+   `detailRow`, `paragraph`, `ctaButton` from `layout.ts` so it
+   automatically matches the existing branding)
+2. Add a thin `sendXEmail(data)` function to `send.ts`
+3. Call it from wherever that event happens (e.g. a future admin action,
+   or a scheduled Netlify Function for reminders)
+
+### Environment Variables
+
+Add these three **in addition to** the existing `NEXT_PUBLIC_*` variables:
+
+| Variable | Example | Notes |
+|---|---|---|
+| `RESEND_API_KEY` | `re_xxxxxxxxxxxxxxxxx` | From your Resend dashboard. Server-only — never prefixed `NEXT_PUBLIC_`. |
+| `ADMIN_EMAIL` | `nikooaesthetics@gmail.com` | Where new booking/enquiry notifications are sent. |
+| `FROM_EMAIL` | `Nikoo Aesthetics <bookings@nikooaesthetics.co.uk>` | Must be on a domain you've verified in Resend — see below. |
+
+**Local development:** add them to `.env.local` (copy from `.env.example`,
+which documents each one).
+
+**Netlify (production):** Site settings → Environment variables → Add a
+variable, for each of the three. **Do not** add these to `netlify.toml` —
+that file is committed to git, and secrets must never live there (this is
+why `NEXT_PUBLIC_SITE_URL` is safe to keep in `netlify.toml` but
+`RESEND_API_KEY` is not).
+
+### Setting Up Resend (step by step)
+
+1. **Create a free account** at [resend.com](https://resend.com) — the
+   free tier includes 3,000 emails/month and 100/day, comfortably enough
+   for a single clinic's bookings and enquiries.
+2. **Verify your sending domain** (required to send from an address like
+   `bookings@nikooaesthetics.co.uk` instead of a shared test domain):
+   - In the Resend dashboard, go to **Domains → Add Domain**
+   - Enter your domain (e.g. `nikooaesthetics.co.uk`)
+   - Resend will show you 3–4 DNS records to add (SPF, DKIM, and
+     optionally DMARC) — add these in whichever service manages your
+     domain's DNS (your domain registrar, or Netlify DNS if you use it)
+   - Back in Resend, click **Verify** — this can take a few minutes to a
+     few hours depending on DNS propagation
+   - Until verification completes, you can still test using Resend's
+     shared test address `onboarding@resend.dev` as `FROM_EMAIL`, which
+     works immediately with no domain setup — useful for local testing
+3. **Create an API key**: Dashboard → **API Keys → Create API Key**. Give
+   it a name like "Nikoo Aesthetics Production", and copy the key
+   immediately (Resend only shows it once) — this becomes `RESEND_API_KEY`.
+4. **Set your three environment variables** locally and on Netlify as
+   described above.
+
+### Testing
+
+**Locally:**
+```bash
+cp .env.example .env.local
+# fill in RESEND_API_KEY, ADMIN_EMAIL, FROM_EMAIL
+npm run dev
+```
+Then submit the Contact form or complete a Booking at
+http://localhost:3000 — check both the admin inbox (`ADMIN_EMAIL`) and the
+email address you submitted the form with for the two emails.
+
+You can also test the API routes directly without the UI:
+```bash
+curl -X POST http://localhost:3000/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test User","email":"you@example.com","message":"Testing the contact form."}'
+```
+A successful response looks like `{"success":true,"message":"..."}`.
+
+**On Netlify:** once the three environment variables are set and the site
+is redeployed, test the same way against your live URL. Netlify's
+**Functions** tab in the site dashboard shows logs for `/api/booking` and
+`/api/contact` if anything needs debugging — errors are logged with enough
+detail to see whether it's a validation issue, a missing env var, or a
+Resend API error.
 
 ## Images
 
-Hero, treatment, gallery and team images are currently original, abstract,
-on-brand placeholder artwork generated locally (see `generate_images.py`) —
-soft gradients in the brand palette with a gold line motif, not stock
-photography. This avoids any licensing/attribution issues and any
-misrepresentation of the clinic. Replace the files under `public/images/`
-with real photography before launch — filenames and folders are already
-wired up, so no code changes are required, only file swaps.
+Hero, treatment, gallery and team images are original photography and
+branded artwork supplied by the client, stored under `public/images/`.
+`generate_images.py` (kept for reference) can regenerate the original
+abstract placeholder art this project started with, if ever needed again.
 
 ## Future Improvements
 
