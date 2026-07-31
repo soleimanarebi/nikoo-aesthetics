@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NEXT_PUBLIC_BOOKING_URL = "https://booking.consentz.com/nikoo-aesthetics"
+  NEXT_PUBLIC_SITE_URL = "https://www.nikooaesthetics.co.uk"

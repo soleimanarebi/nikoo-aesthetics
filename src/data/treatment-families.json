@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "consultation",
+    "name": "Consultation & Review",
+    "image": "/images/treatments/families/consultation.jpg",
+    "description": "Every treatment journey at Nikoo Aesthetics begins here — a thorough, unhurried conversation about your goals, medical history and suitability, before any treatment is planned."
+  },
+  {
+    "slug": "botox",
+    "name": "Botox",
+    "image": "/images/treatments/families/botox.jpg",
+    "description": "Anti-wrinkle treatment using premium brands — Azzalure, Botox and Alluzience — softening expression lines for a naturally refreshed look, plus targeted treatments for jawline slimming and excessive sweating."
+  },
+  {
+    "slug": "filler",
+    "name": "Filler",
+    "image": "/images/treatments/families/filler.jpg",
+    "description": "Our full range of dermal filler treatments — lips, chin, jawline, cheeks and non-surgical rhinoplasty — using premium hyaluronic acid brands including Restylane, Juvederm and Revolax, tailored to your natural proportions."
+  },
+  {
+    "slug": "profhilo-skin-boosters",
+    "name": "Profhilo / Skin Boosters",
+    "image": "/images/treatments/families/profhilo-skin-boosters.jpg",
+    "description": "Bio-remodelling and hydration treatments — Profhilo, Seventy Hyal and Polynucleotides — that work with your skin's own collagen and elastin for a natural, from-within glow."
+  },
+  {
+    "slug": "fat-dissolving",
+    "name": "Fat Dissolving",
+    "image": "/images/treatments/families/fat-dissolving.jpg",
+    "description": "Lemon Bottle and Aqualyx injectable treatments to dissolve stubborn, localised fat deposits — most commonly used for double chin contouring."
+  },
+  {
+    "slug": "mesotherapy-microneedling",
+    "name": "Mesotherapy and Microneedling",
+    "image": "/images/treatments/families/mesotherapy-microneedling.jpg",
+    "description": "Skin revitalisation treatments including Mesotherapy and PRP (Vampire Facial) — nourishing and rejuvenating the skin from within for improved texture, tone and radiance."
+  }
+]

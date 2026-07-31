@@ -1,0 +1,352 @@
+[
+  {
+    "slug": "anti-wrinkle-injections",
+    "name": "Anti-Wrinkle Injections",
+    "category": "Anti-Wrinkle",
+    "shortDescription": "Soften expression lines with precise, medically-led dosing for a naturally refreshed look.",
+    "image": "/images/treatments/real/Anti-wrinkle_Injections.jpg",
+    "benefits": [
+      "Softens forehead lines, frown lines and crow's feet",
+      "Prevents deepening of existing lines",
+      "Results that move naturally with your expressions",
+      "No downtime required"
+    ],
+    "downtime": "None — return to normal activities immediately",
+    "duration": "15–20 minutes",
+    "priceFrom": 180,
+    "resultsLast": "3–4 months",
+    "overview": "Anti-wrinkle injections relax the small muscles responsible for expression lines, softening the forehead, frown and eye area while leaving the rest of your expression untouched. Using carefully calculated, medically-led dosing, results look refreshed rather than frozen.",
+    "procedure": "After a full consultation to assess your facial movement and suitability, a fine needle is used to place small amounts of product into the targeted muscles. Most clients describe the sensation as a light scratch, and no anaesthetic is usually required.",
+    "recovery": "There is no formal downtime. You can return to work or normal activities immediately, though we advise avoiding strenuous exercise, alcohol and lying flat for the remainder of the day. Mild redness or small bumps at injection points settle within a few hours.",
+    "results": "Effects begin to appear from day three, with full results visible at around two weeks. Lines soften rather than disappear entirely, preserving natural movement and expression.",
+    "faqs": [
+      {
+        "q": "Will I still be able to move my face naturally?",
+        "a": "Yes. Our dosing philosophy is conservative and precise — the aim is softened lines with expression intact, not a frozen look."
+      },
+      {
+        "q": "How soon will I see results?",
+        "a": "Initial changes appear from around day three, with the full effect settled by two weeks."
+      },
+      {
+        "q": "How often will I need treatment?",
+        "a": "Most clients return every three to four months to maintain results, though this varies by individual."
+      }
+    ]
+  },
+  {
+    "slug": "dermal-fillers",
+    "name": "Dermal Fillers",
+    "category": "Cheeks",
+    "shortDescription": "Restore volume and soften contours with premium hyaluronic acid fillers, tailored to your face.",
+    "image": "/images/treatments/real/Dermal_Filler.jpg",
+    "benefits": [
+      "Restores lost volume in cheeks, temples and jawline",
+      "Softens nasolabial folds and marionette lines",
+      "Premium, medical-grade hyaluronic acid",
+      "Subtle, natural-looking enhancement"
+    ],
+    "downtime": "Mild swelling for 24–48 hours",
+    "duration": "30–45 minutes",
+    "priceFrom": 250,
+    "resultsLast": "9–18 months",
+    "overview": "Dermal fillers use medical-grade hyaluronic acid to restore volume lost with age and soften developing lines, working with your existing bone structure rather than against it.",
+    "procedure": "Following a detailed facial assessment, filler is placed using fine needles or a blunt cannula, whichever is safest and most precise for the area being treated. A topical numbing cream is applied beforehand for comfort.",
+    "recovery": "Mild swelling and occasional bruising can occur and typically resolves within 24 to 48 hours. We recommend avoiding intense exercise and excessive heat for 48 hours following treatment.",
+    "results": "Results are visible immediately, with any residual swelling settling to reveal the final outcome within one to two weeks.",
+    "faqs": [
+      {
+        "q": "Is filler reversible?",
+        "a": "Hyaluronic acid filler can be dissolved with an enzyme if ever needed, giving an added layer of safety and control."
+      },
+      {
+        "q": "Will people be able to tell I've had filler?",
+        "a": "Our approach favours subtle, proportionate enhancement designed to look like you, only refreshed."
+      },
+      {
+        "q": "How long does filler last?",
+        "a": "Typically nine to eighteen months, depending on the area treated and your individual metabolism."
+      }
+    ]
+  },
+  {
+    "slug": "lip-fillers",
+    "name": "Lip Fillers",
+    "category": "Lips",
+    "shortDescription": "Enhance shape, symmetry and hydration for lips that look like yours, only more defined.",
+    "image": "/images/treatments/real/filler.jpg",
+    "benefits": [
+      "Adds volume and definition",
+      "Improves symmetry and border definition",
+      "Hydrates and smooths vertical lip lines",
+      "Fully bespoke to your natural lip shape"
+    ],
+    "downtime": "Mild swelling for 24–72 hours",
+    "duration": "30 minutes",
+    "priceFrom": 220,
+    "resultsLast": "6–12 months",
+    "overview": "Lip filler adds volume, hydration and definition while respecting the natural shape of your mouth. Every treatment plan starts with your lip anatomy, not a fixed template.",
+    "procedure": "After discussing your desired outcome, a numbing cream is applied for comfort. Filler is then placed carefully to enhance shape, symmetry and volume, checked against your natural proportions throughout.",
+    "recovery": "Mild swelling is common for the first 24 to 72 hours and is a normal part of the healing process — lips often look fuller in the first day or two before settling into their final shape.",
+    "results": "Final results are best assessed at the two-week mark, once all swelling has fully resolved.",
+    "faqs": [
+      {
+        "q": "Will my lips look overdone?",
+        "a": "No — we build volume gradually and assess proportion at every stage to keep results balanced and natural."
+      },
+      {
+        "q": "Does lip filler hurt?",
+        "a": "A topical anaesthetic is applied before treatment to keep the process as comfortable as possible."
+      },
+      {
+        "q": "How long will my results last?",
+        "a": "Typically six to twelve months, depending on the product used and your individual metabolism."
+      }
+    ]
+  },
+  {
+    "slug": "cheek-fillers",
+    "name": "Cheek Fillers",
+    "category": "Cheeks",
+    "shortDescription": "Lift and sculpt the midface for a refreshed, more youthful contour.",
+    "image": "/images/treatments/cheek-fillers.jpg",
+    "benefits": [
+      "Restores midface volume and structure",
+      "Softens under-eye hollowing",
+      "Creates a natural lifted appearance",
+      "Long-lasting, structural support"
+    ],
+    "downtime": "Mild swelling for 24–48 hours",
+    "duration": "30–45 minutes",
+    "priceFrom": 280,
+    "resultsLast": "12–18 months",
+    "overview": "Cheek filler restores structure to the midface, lifting and defining the cheekbones to create a naturally refreshed, more youthful contour.",
+    "procedure": "Filler is placed deep at the level of the bone to rebuild lost structural support, then layered more superficially if needed to soften contour and enhance light reflection across the cheek.",
+    "recovery": "Expect mild swelling for 24 to 48 hours. Bruising is possible but uncommon. Most clients resume normal activities the same day.",
+    "results": "You'll see an immediate lift, with final results visible once swelling has fully subsided after one to two weeks.",
+    "faqs": [
+      {
+        "q": "Can cheek filler help with under-eye hollowing?",
+        "a": "Yes — restoring cheek volume often softens the appearance of tear trough shadows by providing better structural support."
+      },
+      {
+        "q": "Is the treatment painful?",
+        "a": "A local anaesthetic within the filler, plus topical numbing, keeps discomfort to a minimum."
+      },
+      {
+        "q": "How long does the result last?",
+        "a": "Typically twelve to eighteen months given the structural, deeper placement of product."
+      }
+    ]
+  },
+  {
+    "slug": "jawline-filler",
+    "name": "Jawline Filler",
+    "category": "Jawline",
+    "shortDescription": "Define and sharpen the jawline for improved balance and profile.",
+    "image": "/images/treatments/jawline-filler.jpg",
+    "benefits": [
+      "Sharpens and defines the jawline contour",
+      "Improves facial balance and profile",
+      "Adds structure without surgery",
+      "Tailored to facial anatomy"
+    ],
+    "downtime": "Mild swelling for 48 hours",
+    "duration": "45 minutes",
+    "priceFrom": 320,
+    "resultsLast": "12–18 months",
+    "overview": "Jawline filler sharpens and defines the mandibular contour, improving facial balance and profile without surgery.",
+    "procedure": "Filler is placed along the jawline using a cannula technique for smooth, even distribution and enhanced comfort, sculpting definition tailored to your facial anatomy.",
+    "recovery": "Mild swelling for up to 48 hours is normal. We recommend sleeping slightly elevated on the night of treatment.",
+    "results": "Definition is visible immediately and refines further as swelling resolves over the following two weeks.",
+    "faqs": [
+      {
+        "q": "Is jawline filler suitable for everyone?",
+        "a": "Suitability is assessed individually during consultation based on your facial structure and goals."
+      },
+      {
+        "q": "Will it change how my face looks from the front?",
+        "a": "Yes, subtly — a defined jawline often improves overall facial balance and proportion, not just profile."
+      },
+      {
+        "q": "How long will results last?",
+        "a": "Typically twelve to eighteen months due to the structural placement of the product."
+      }
+    ]
+  },
+  {
+    "slug": "chin-filler",
+    "name": "Chin Filler",
+    "category": "Jawline",
+    "shortDescription": "Improve chin projection and facial proportion with subtle, precise sculpting.",
+    "image": "/images/treatments/chin-filler.jpg",
+    "benefits": [
+      "Improves chin projection and profile balance",
+      "Softens a recessed chin",
+      "Complements jawline treatment",
+      "Precise, structural results"
+    ],
+    "downtime": "Mild swelling for 24–48 hours",
+    "duration": "30 minutes",
+    "priceFrom": 260,
+    "resultsLast": "12–18 months",
+    "overview": "Chin filler improves projection and facial proportion, correcting a recessed chin or refining an asymmetrical profile with precise, structural sculpting.",
+    "procedure": "Filler is placed directly onto the bone to build forward projection, then blended to ensure a smooth, natural transition into the jawline.",
+    "recovery": "Mild swelling for 24 to 48 hours is expected. Most clients return to normal activities the same day.",
+    "results": "Improved projection is visible straight away, with final results settling within two weeks.",
+    "faqs": [
+      {
+        "q": "Can chin filler improve my profile?",
+        "a": "Yes — correcting chin projection often improves overall facial harmony when viewed from the side."
+      },
+      {
+        "q": "Is this often combined with jawline filler?",
+        "a": "Frequently, yes. Many clients choose to treat the chin and jawline together for a cohesive, balanced lower face."
+      },
+      {
+        "q": "How long does it last?",
+        "a": "Typically twelve to eighteen months."
+      }
+    ]
+  },
+  {
+    "slug": "skin-boosters",
+    "name": "Skin Boosters",
+    "category": "Skin",
+    "shortDescription": "Deep hydration injectables that improve skin quality, elasticity and glow from within.",
+    "image": "/images/treatments/real/Seventy_Hayal.jpg",
+    "benefits": [
+      "Improves skin hydration and elasticity",
+      "Refines texture and fine lines",
+      "Restores a natural, healthy glow",
+      "Suitable for face, neck and hands"
+    ],
+    "downtime": "Minimal — small bumps settle within 24 hours",
+    "duration": "30 minutes",
+    "priceFrom": 200,
+    "resultsLast": "4–6 months",
+    "overview": "Skin boosters are injectable hyaluronic acid treatments that hydrate the skin from within, improving elasticity, texture and radiance over a short course of sessions.",
+    "procedure": "A series of fine micro-injections deliver hydrating hyaluronic acid evenly across the treatment area, most commonly the face, neck or hands.",
+    "recovery": "Small bumps at injection points are normal and settle within 24 hours. There is no significant downtime.",
+    "results": "Skin quality improves progressively over the treatment course, with a noticeable glow and improved texture typically visible after the second session.",
+    "faqs": [
+      {
+        "q": "How many sessions will I need?",
+        "a": "We typically recommend a course of two to three sessions, spaced four weeks apart, for optimal results."
+      },
+      {
+        "q": "How is this different to dermal filler?",
+        "a": "Skin boosters are designed to hydrate and improve skin quality rather than add structural volume."
+      },
+      {
+        "q": "How long do results last?",
+        "a": "Improvements typically last four to six months following a completed course."
+      }
+    ]
+  },
+  {
+    "slug": "profhilo",
+    "name": "Profhilo",
+    "category": "Skin",
+    "shortDescription": "The bio-remodelling treatment that hydrates, firms and lifts from within.",
+    "image": "/images/treatments/real/Profhilo.jpg",
+    "benefits": [
+      "Stimulates collagen and elastin production",
+      "Improves skin laxity and firmness",
+      "Delivers a natural bio-remodelling effect",
+      "Course of two treatments, four weeks apart"
+    ],
+    "downtime": "None — minor bumps settle within hours",
+    "duration": "30 minutes",
+    "priceFrom": 250,
+    "resultsLast": "6 months",
+    "overview": "Profhilo is a bio-remodelling treatment that stimulates the skin's own collagen and elastin production, improving laxity and delivering a natural, from-within lift.",
+    "procedure": "Treatment is delivered via a small number of injection points per side of the face, allowing the product to spread evenly beneath the skin and stimulate tissue remodelling.",
+    "recovery": "Minor bumps at injection points settle within a few hours. There is no significant downtime.",
+    "results": "Skin firmness and hydration improve progressively, with most clients seeing their fullest results after the second session, four weeks after the first.",
+    "faqs": [
+      {
+        "q": "How many treatments will I need?",
+        "a": "Profhilo is delivered as a course of two sessions, four weeks apart, with results lasting around six months."
+      },
+      {
+        "q": "Does Profhilo add volume like filler?",
+        "a": "No — Profhilo works differently, remodelling the skin's own collagen and elastin rather than adding structural volume."
+      },
+      {
+        "q": "Who is Profhilo suitable for?",
+        "a": "It's particularly well suited to those noticing early skin laxity or crepiness, often as a complement to filler treatment."
+      }
+    ]
+  },
+  {
+    "slug": "microneedling",
+    "name": "Microneedling",
+    "category": "Skin",
+    "shortDescription": "Collagen induction therapy for smoother texture, refined pores and renewed radiance.",
+    "image": "/images/treatments/real/microdeedling.jpg",
+    "benefits": [
+      "Improves texture, tone and pore appearance",
+      "Reduces fine lines and mild scarring",
+      "Stimulates natural collagen production",
+      "Suitable for most skin types"
+    ],
+    "downtime": "Redness for 24–48 hours",
+    "duration": "45–60 minutes",
+    "priceFrom": 150,
+    "resultsLast": "Course of 3–6 recommended",
+    "overview": "Microneedling uses fine, sterile needles to trigger the skin's natural collagen induction process, refining texture, tone and the appearance of pores.",
+    "procedure": "A hand-held device creates controlled micro-channels in the skin, prompting a natural healing and collagen-building response. A calming serum is applied throughout.",
+    "recovery": "Skin typically appears pink for 24 to 48 hours, similar to mild sunburn, and can be covered with mineral makeup after 24 hours.",
+    "results": "Improvements in texture and tone build progressively over a course of treatments, with continued improvement for several weeks after each session.",
+    "faqs": [
+      {
+        "q": "How many sessions are recommended?",
+        "a": "We typically recommend a course of three to six sessions, spaced four weeks apart, for best results."
+      },
+      {
+        "q": "Is microneedling suitable for acne scarring?",
+        "a": "Yes — it's one of our most effective treatments for improving the appearance of mild to moderate scarring over a course."
+      },
+      {
+        "q": "Can I wear makeup afterwards?",
+        "a": "We recommend waiting 24 hours before applying makeup to allow the skin to begin healing undisturbed."
+      }
+    ]
+  },
+  {
+    "slug": "chemical-peel",
+    "name": "Chemical Peel",
+    "category": "Skin",
+    "shortDescription": "Medical-grade peels to refine texture, tone and clarity for brighter, smoother skin.",
+    "image": "/images/treatments/chemical-peel.jpg",
+    "benefits": [
+      "Improves tone, texture and clarity",
+      "Softens pigmentation and congestion",
+      "Tailored peel strength for your skin",
+      "Quick, effective and minimal downtime"
+    ],
+    "downtime": "Light flaking for 3–5 days",
+    "duration": "30 minutes",
+    "priceFrom": 120,
+    "resultsLast": "Course of 3 recommended",
+    "overview": "Our medical-grade chemical peels refine texture, tone and clarity, addressing concerns such as congestion, pigmentation and dullness with a peel strength tailored to your skin.",
+    "procedure": "A carefully selected peel solution is applied to clean skin and left for a controlled period before being neutralised, targeting your specific skin concerns.",
+    "recovery": "Depending on peel strength, mild flaking or dryness can occur for three to five days. SPF is essential during this time.",
+    "results": "Skin appears brighter and more even in tone within a week, with continued improvement over a course of treatments.",
+    "faqs": [
+      {
+        "q": "Will my skin visibly peel?",
+        "a": "This depends on the peel strength chosen for your skin — lighter peels cause minimal visible flaking, while deeper peels may cause more noticeable shedding."
+      },
+      {
+        "q": "Is a chemical peel suitable for sensitive skin?",
+        "a": "Yes, peel strength and formulation are tailored to your skin type and sensitivity during consultation."
+      },
+      {
+        "q": "How many peels will I need?",
+        "a": "A course of three sessions, spaced two to four weeks apart, is typically recommended for visible results."
+      }
+    ]
+  }
+]

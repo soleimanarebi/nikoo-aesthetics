@@ -1,0 +1,434 @@
+[
+  {
+    "id": "consultation-review",
+    "category": "Consultation & Review",
+    "items": [
+      {
+        "name": "Review",
+        "price": 0
+      },
+      {
+        "name": "Consultation",
+        "price": 50
+      }
+    ],
+    "family": "consultation",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "lip-filler",
+    "category": "Lip Filler",
+    "note": "Brands used: Restylane, Juvederm, Revolax",
+    "items": [
+      {
+        "name": "Lip Filler - 0.5ml",
+        "price": 160
+      },
+      {
+        "name": "Lip Filler - 1ml",
+        "price": 220
+      },
+      {
+        "name": "Lip Filler - 1.5ml",
+        "price": 310
+      }
+    ],
+    "family": "filler",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "botox",
+    "category": "Botox",
+    "note": "Botulinum toxin takes two weeks to take full effect. Choose an area from the following: frown lines, forehead lines, crow's feet, pebbled chin, bunny lines, lip flip, brow lift, gummy smile. £20 extra when combined with other areas, or £90 on its own.",
+    "items": [
+      {
+        "name": "Lip Flip or Gummy Smile",
+        "price": 90
+      },
+      {
+        "name": "1 Area",
+        "price": 150
+      },
+      {
+        "name": "2 Areas",
+        "price": 200
+      },
+      {
+        "name": "3 Areas",
+        "price": 250
+      },
+      {
+        "name": "Jawline Slimming / TMJ",
+        "price": 300
+      },
+      {
+        "name": "Excessive Sweating",
+        "price": 350
+      }
+    ],
+    "family": "botox",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "non-surgical-rhinoplasty",
+    "category": "Non Surgical Rhinoplasty",
+    "items": [
+      {
+        "name": "Non Surgical Rhinoplasty",
+        "price": 400
+      },
+      {
+        "name": "2-6 Week Top Up",
+        "price": 100
+      },
+      {
+        "name": "6 Monthly Top Up",
+        "price": 220
+      },
+      {
+        "name": "Pixie Nose Lift",
+        "price": 200
+      }
+    ],
+    "family": "filler",
+    "priceGroup": "Injectables",
+    "note": "Non-surgical rhinoplasty is a two-step treatment. We encourage all clients to return for a second treatment 2–6 weeks after the initial session to finalise results and maintain longevity. On occasion, more than two treatments may be required."
+  },
+  {
+    "id": "profhilo",
+    "category": "Profhilo",
+    "note": "All patients will require 2 sessions, 4 weeks apart, for optimum results.",
+    "items": [
+      {
+        "name": "Profhilo Structura",
+        "price": 280
+      },
+      {
+        "name": "Profhilo - 1 Session",
+        "price": 250
+      },
+      {
+        "name": "Profhilo - 2 Sessions",
+        "price": 470
+      }
+    ],
+    "family": "profhilo-skin-boosters",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "seventy-hyal",
+    "category": "Seventy Hyal",
+    "note": "All patients will require 2 sessions, 4 weeks apart, for optimum results.",
+    "items": [
+      {
+        "name": "Seventy Hyal - 1 Session",
+        "price": 230
+      },
+      {
+        "name": "Seventy Hyal - 2 Sessions",
+        "price": 430
+      }
+    ],
+    "family": "profhilo-skin-boosters",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "polynucleotide",
+    "category": "Polynucleotide Treatment",
+    "items": [
+      {
+        "name": "1 Session",
+        "price": 230
+      },
+      {
+        "name": "3 Sessions",
+        "price": 650
+      },
+      {
+        "name": "Under Eye Only",
+        "price": 180
+      }
+    ],
+    "family": "profhilo-skin-boosters",
+    "priceGroup": "Injectables",
+    "note": "All patients will require 3–4 sessions, 4 weeks apart, for optimum results."
+  },
+  {
+    "id": "lumi-eyes",
+    "category": "Lumi Eyes",
+    "items": [
+      {
+        "name": "1 Session",
+        "price": 180
+      },
+      {
+        "name": "3 Sessions",
+        "price": 500
+      }
+    ],
+    "family": "profhilo-skin-boosters",
+    "priceGroup": "Injectables",
+    "note": "All patients will require 3–4 sessions, 2–4 weeks apart, for optimum results."
+  },
+  {
+    "id": "light-eye-ultra",
+    "category": "Light Eye Ultra / Eye Brightening Treatment",
+    "items": [
+      {
+        "name": "Light Eye - 3 Sessions",
+        "price": 500
+      },
+      {
+        "name": "Light Eye - 1 Session",
+        "price": 180
+      }
+    ],
+    "family": "profhilo-skin-boosters",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "chin-jawline-filler",
+    "category": "Chin / Jawline Filler",
+    "items": [
+      {
+        "name": "Chin / Jawline Filler - 1ml",
+        "price": 220
+      },
+      {
+        "name": "Chin / Jawline Filler - 2mls",
+        "price": 390
+      },
+      {
+        "name": "Chin / Jawline Filler - 3mls",
+        "price": 540
+      },
+      {
+        "name": "Cheek Filler - 1ml",
+        "price": 220
+      },
+      {
+        "name": "Cheek Filler - 2mls",
+        "price": 390
+      }
+    ],
+    "family": "filler",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "smile-marionette-lines",
+    "category": "Smile Lines / Marionette Lines",
+    "items": [
+      {
+        "name": "1ml",
+        "price": 220
+      },
+      {
+        "name": "2mls",
+        "price": 390
+      }
+    ],
+    "family": "filler",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "combined-filler-discount",
+    "category": "Combined Filler Discount",
+    "items": [
+      {
+        "name": "Combined Filler - 2mls",
+        "price": 390
+      },
+      {
+        "name": "Combined Filler - 3mls",
+        "price": 540
+      },
+      {
+        "name": "Combined Filler - 4mls",
+        "price": 670
+      },
+      {
+        "name": "Combined Filler - 5mls",
+        "price": 790
+      },
+      {
+        "name": "Combined Filler - 6mls",
+        "price": 910
+      },
+      {
+        "name": "Combined Filler - 7mls",
+        "price": 1020
+      },
+      {
+        "name": "Combined Filler - 8mls",
+        "price": 1120
+      },
+      {
+        "name": "Combined Filler - 9mls",
+        "price": 1220
+      }
+    ],
+    "family": "filler",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "filler-dissolving",
+    "category": "Filler Dissolving - Correction",
+    "items": [
+      {
+        "name": "Filler Dissolving - 1ml",
+        "price": 150
+      }
+    ],
+    "family": "filler",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "lemon-bottle-fat-dissolving",
+    "category": "Lemon Bottle Fat Dissolving",
+    "items": [
+      {
+        "name": "First Session",
+        "price": 150
+      },
+      {
+        "name": "Follow Up Sessions",
+        "price": 120
+      },
+      {
+        "name": "3 Session Package",
+        "price": 340
+      },
+      {
+        "name": "6 Session Package",
+        "price": 650
+      }
+    ],
+    "family": "fat-dissolving",
+    "priceGroup": "Body & Fat Reduction"
+  },
+  {
+    "id": "aqualyx-fat-dissolving",
+    "category": "Aqualyx Fat Dissolving Injections",
+    "note": "Double Chin Only",
+    "items": [
+      {
+        "name": "First Session",
+        "price": 150
+      },
+      {
+        "name": "Follow Up Sessions",
+        "price": 120
+      },
+      {
+        "name": "3 Session Package",
+        "price": 340
+      },
+      {
+        "name": "6 Session Package",
+        "price": 650
+      }
+    ],
+    "family": "fat-dissolving",
+    "priceGroup": "Body & Fat Reduction"
+  },
+  {
+    "id": "vitamin-therapy",
+    "category": "Vitamin Therapy",
+    "items": [
+      {
+        "name": "IV Vitamin Drip",
+        "price": 190
+      },
+      {
+        "name": "Biotin Shots",
+        "price": 35
+      },
+      {
+        "name": "Vitamin D Shots",
+        "price": 40
+      },
+      {
+        "name": "Vitamin B12 Shots",
+        "price": 30
+      }
+    ],
+    "family": "mesotherapy-microneedling",
+    "priceGroup": "Skin & Rejuvenation"
+  },
+  {
+    "id": "prp-vampire-facial",
+    "category": "PRP / Vampire Facial",
+    "items": [
+      {
+        "name": "PRP - 1 Session",
+        "price": 250
+      },
+      {
+        "name": "PRP - 3 Sessions",
+        "price": 700
+      },
+      {
+        "name": "PRP - 6 Sessions",
+        "price": 1400
+      }
+    ],
+    "family": "mesotherapy-microneedling",
+    "priceGroup": "Skin & Rejuvenation"
+  },
+  {
+    "id": "mesotherapy",
+    "category": "Mesotherapy",
+    "items": [
+      {
+        "name": "Mesotherapy - 1 Session",
+        "price": 180
+      },
+      {
+        "name": "Mesotherapy - 3 Sessions",
+        "price": 510
+      },
+      {
+        "name": "Mesotherapy - 6 Sessions",
+        "price": 960
+      }
+    ],
+    "family": "mesotherapy-microneedling",
+    "priceGroup": "Skin & Rejuvenation"
+  },
+  {
+    "id": "organic-plasma-filler",
+    "category": "Organic Filler / Plasma Filler",
+    "items": [
+      {
+        "name": "Organic Filler - 1ml",
+        "price": 250
+      },
+      {
+        "name": "Organic Filler - 2ml",
+        "price": 420
+      },
+      {
+        "name": "Organic Filler - 3ml",
+        "price": 600
+      }
+    ],
+    "family": "filler",
+    "priceGroup": "Injectables"
+  },
+  {
+    "id": "juvederm-voluma",
+    "category": "Juvederm Voluma",
+    "items": [
+      {
+        "name": "Voluma 2mls",
+        "price": 500
+      },
+      {
+        "name": "Voluma",
+        "price": 350
+      }
+    ],
+    "family": "filler",
+    "priceGroup": "Injectables"
+  }
+]

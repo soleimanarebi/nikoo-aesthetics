@@ -1,0 +1,58 @@
+[
+  {
+    "group": "Safety",
+    "items": [
+      {
+        "q": "Are your treatments safe?",
+        "a": "Every treatment is delivered by a medically qualified practitioner using licensed, premium products. A full medical consultation and consent process takes place before any treatment begins."
+      },
+      {
+        "q": "Who will be treating me?",
+        "a": "All treatments are performed by Nikoo, a medically trained aesthetic practitioner with extensive experience in facial anatomy and injectable techniques."
+      },
+      {
+        "q": "What products do you use?",
+        "a": "We use only clinically approved, premium-grade products sourced through regulated UK suppliers, chosen for their safety profile and natural-looking results."
+      }
+    ]
+  },
+  {
+    "group": "Recovery",
+    "items": [
+      {
+        "q": "Is there any downtime?",
+        "a": "Most treatments involve little to no downtime. Some mild swelling, redness or tenderness can occur and typically settles within 24–72 hours depending on the treatment."
+      },
+      {
+        "q": "What aftercare is provided?",
+        "a": "You'll receive clear written aftercare guidance following your treatment, along with direct access to your practitioner should you have any questions during recovery."
+      }
+    ]
+  },
+  {
+    "group": "Results",
+    "items": [
+      {
+        "q": "How long do results last?",
+        "a": "This varies by treatment, from three to four months for anti-wrinkle injections up to eighteen months for structural filler. Your practitioner will discuss expected longevity during consultation."
+      },
+      {
+        "q": "Will my results look natural?",
+        "a": "Yes. Our philosophy is subtle enhancement, not transformation. Treatment plans are tailored to your individual anatomy to preserve and enhance your natural features."
+      }
+    ]
+  },
+  {
+    "group": "Booking",
+    "items": [
+      {
+        "q": "Do I need a consultation first?",
+        "a": "Yes, every new client begins with a thorough consultation to discuss goals, medical history and suitability before any treatment is planned."
+      },
+      {
+        "q": "How do I book an appointment?",
+        "a": "You can book your consultation directly online using the Book Appointment button found throughout the site."
+      }
+    ]
+  }
+]
