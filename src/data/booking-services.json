@@ -70,31 +70,6 @@
     "priceGroup": "Injectables"
   },
   {
-    "id": "non-surgical-rhinoplasty",
-    "category": "Non Surgical Rhinoplasty",
-    "items": [
-      {
-        "name": "Non Surgical Rhinoplasty",
-        "price": 400
-      },
-      {
-        "name": "2-6 Week Top Up",
-        "price": 100
-      },
-      {
-        "name": "6 Monthly Top Up",
-        "price": 220
-      },
-      {
-        "name": "Pixie Nose Lift",
-        "price": 200
-      }
-    ],
-    "family": "filler",
-    "priceGroup": "Injectables",
-    "note": "Non-surgical rhinoplasty is a two-step treatment. We encourage all clients to return for a second treatment 2–6 weeks after the initial session to finalise results and maintain longevity. On occasion, more than two treatments may be required."
-  },
-  {
     "id": "profhilo",
     "category": "Profhilo",
     "note": "All patients will require 2 sessions, 4 weeks apart, for optimum results.",
@@ -394,26 +369,6 @@
     ],
     "family": "mesotherapy-microneedling",
     "priceGroup": "Skin & Rejuvenation"
-  },
-  {
-    "id": "organic-plasma-filler",
-    "category": "Organic Filler / Plasma Filler",
-    "items": [
-      {
-        "name": "Organic Filler - 1ml",
-        "price": 250
-      },
-      {
-        "name": "Organic Filler - 2ml",
-        "price": 420
-      },
-      {
-        "name": "Organic Filler - 3ml",
-        "price": 600
-      }
-    ],
-    "family": "filler",
-    "priceGroup": "Injectables"
   },
   {
     "id": "juvederm-voluma",
