@@ -307,30 +307,6 @@
     "priceGroup": "Body & Fat Reduction"
   },
   {
-    "id": "vitamin-therapy",
-    "category": "Vitamin Therapy",
-    "items": [
-      {
-        "name": "IV Vitamin Drip",
-        "price": 190
-      },
-      {
-        "name": "Biotin Shots",
-        "price": 35
-      },
-      {
-        "name": "Vitamin D Shots",
-        "price": 40
-      },
-      {
-        "name": "Vitamin B12 Shots",
-        "price": 30
-      }
-    ],
-    "family": "mesotherapy-microneedling",
-    "priceGroup": "Skin & Rejuvenation"
-  },
-  {
     "id": "prp-vampire-facial",
     "category": "PRP / Vampire Facial",
     "items": [
@@ -369,21 +345,5 @@
     ],
     "family": "mesotherapy-microneedling",
     "priceGroup": "Skin & Rejuvenation"
-  },
-  {
-    "id": "juvederm-voluma",
-    "category": "Juvederm Voluma",
-    "items": [
-      {
-        "name": "Voluma 2mls",
-        "price": 500
-      },
-      {
-        "name": "Voluma",
-        "price": 350
-      }
-    ],
-    "family": "filler",
-    "priceGroup": "Injectables"
   }
 ]

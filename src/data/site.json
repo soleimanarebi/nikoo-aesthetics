@@ -6,12 +6,16 @@
   "email": "nikooaesthetics@gmail.com",
   "instagram": "https://instagram.com/nikoo.aesthetics",
   "instagramHandle": "@nikoo.aesthetics",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Richmond+upon+Thames,+Greater+London,+United+Kingdom",
-  "googleMapsEmbedSrc": "https://www.google.com/maps?q=Richmond+upon+Thames,+Greater+London,+United+Kingdom&output=embed",
+  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Circe+Beauty+Clinic,+28B+Priory+Rd,+Hampton+TW12+2NT",
+  "googleMapsEmbedSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2678.537058300065!2d-0.3739071618853539!3d51.41900379521536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760b00549aa9e1%3A0x7a8810d7f04e5bb5!2sCirce%20Beauty%20Clinic!5e1!3m2!1sen!2suk!4v1786651720585!5m2!1sen!2suk",
   "address": {
-    "area": "Richmond upon Thames",
-    "region": "Greater London",
-    "country": "United Kingdom"
+    "businessName": "Circe Beauty Clinic",
+    "line1": "28B Priory Rd",
+    "line2": "Hampton",
+    "postcode": "TW12 2NT",
+    "country": "United Kingdom",
+    "lat": 51.41900379521536,
+    "lng": -0.3739071618853539
   },
   "hours": [
     { "day": "Monday", "time": "Closed" },

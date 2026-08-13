@@ -71,8 +71,8 @@ export function getFamilyPriceFrom(familySlug: string): number | null {
 /**
  * Categories grouped under each of the 6 treatment families, in family
  * order — used for the Pricing page. Categories not belonging to any of
- * the 6 families (e.g. Lumi Eyes, Light Eye, Vitamin Therapy) are returned
- * separately so nothing is lost from the price list.
+ * the 6 families (e.g. Lumi Eyes, Light Eye) are returned separately so
+ * nothing is lost from the price list.
  */
 export function getCategoriesGroupedByFamily(): {
   family: TreatmentFamily;
@@ -103,11 +103,11 @@ export function getAftercareDocuments(): AftercareDocument[] {
 }
 
 /**
- * Formats the clinic's service area as a list of display lines. The
- * business is intentionally not tied to a public street address or
- * postcode — only a general service area is shown anywhere on the site.
+ * Formats the clinic's address as a list of display lines — includes the
+ * host clinic name (Nikoo Aesthetics operates from within Circe Beauty
+ * Clinic's premises), street, and town/postcode.
  */
 export function getAddressLines(site: SiteSettings): string[] {
-  const { area, region, country } = site.address;
-  return [area, [region, country].filter(Boolean).join(", ")].filter(Boolean);
+  const { businessName, line1, line2, postcode } = site.address;
+  return [businessName, line1, [line2, postcode].filter(Boolean).join(" ")].filter(Boolean);
 }
