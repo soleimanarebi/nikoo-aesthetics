@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { bookingSchema, detectSpam } from "@/lib/validation";
 import { sendBookingEmails } from "@/lib/email/send";
+import { isDateBlocked } from "@/lib/blocked-dates";
 
 /**
  * POST /api/booking
@@ -38,6 +39,27 @@ export async function POST(request: NextRequest) {
   }
 
   const { name, email, phone, treatment, category, date, time, message } = parsed.data;
+
+  // Reject bookings for dates the clinic has temporarily blocked — this is
+  // the real enforcement point: it applies even if a request bypasses the
+  // calendar UI entirely and POSTs directly to this endpoint.
+  try {
+    if (await isDateBlocked(date)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "That date is not available. Please choose a different date.",
+        },
+        { status: 409 }
+      );
+    }
+  } catch (err) {
+    // If the blocked-dates check itself fails, do not silently let the
+    // booking through — but also don't crash the whole request; log and
+    // continue, since a transient storage issue shouldn't block every
+    // booking on the site.
+    console.error("Failed to check blocked dates:", err);
+  }
 
   try {
     const result = await sendBookingEmails({

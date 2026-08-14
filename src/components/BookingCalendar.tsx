@@ -125,6 +125,7 @@ export default function BookingCalendar({
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [bookings, setBookings] = useState<Record<string, string[]>>({});
+  const [blockedDates, setBlockedDates] = useState<Set<string>>(new Set());
   const [form, setForm] = useState({ name: "", surname: "", email: "", phone: "", notes: "", agreed: false });
   const [confirmed, setConfirmed] = useState<{ date: string; time: string } | null>(null);
   const [submitAttempted, setSubmitAttempted] = useState(false);
@@ -140,6 +141,21 @@ export default function BookingCalendar({
     } catch {
       // ignore malformed storage
     }
+  }, []);
+
+  useEffect(() => {
+    // Blocked dates are shared across every visitor (Netlify Blobs, not
+    // localStorage) — fetched once on mount. If this fails for any reason,
+    // the calendar simply shows no extra blocked dates; the real
+    // enforcement happens server-side in /api/booking regardless.
+    fetch("/api/blocked-dates")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data?.dates)) setBlockedDates(new Set(data.dates));
+      })
+      .catch(() => {
+        // Non-fatal — see comment above.
+      });
   }, []);
 
   const hoursByWeekday = useMemo(() => {
@@ -174,6 +190,10 @@ export default function BookingCalendar({
     return slots.every((s) => booked.includes(s));
   }
 
+  function isDateBlocked(date: Date): boolean {
+    return blockedDates.has(toDateKey(date));
+  }
+
   const daysInMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 0).getDate();
   const firstWeekday = (new Date(viewMonth.getFullYear(), viewMonth.getMonth(), 1).getDay() + 6) % 7;
 
@@ -203,7 +223,7 @@ export default function BookingCalendar({
   }, [services]);
 
   function handleSelectDate(date: Date) {
-    if (isDatePast(date) || !isDateOpen(date) || isDateFullyBooked(date)) return;
+    if (isDatePast(date) || !isDateOpen(date) || isDateFullyBooked(date) || isDateBlocked(date)) return;
     setSelectedDate(date);
     setSelectedTime(null);
   }
@@ -415,9 +435,10 @@ export default function BookingCalendar({
                 const past = isDatePast(date);
                 const open = isDateOpen(date);
                 const fullyBooked = isDateFullyBooked(date);
+                const blocked = isDateBlocked(date);
                 const isToday = isSameDay(date, today);
                 const isSelected = selectedDate && isSameDay(date, selectedDate);
-                const disabled = past || !open || fullyBooked;
+                const disabled = past || !open || fullyBooked || blocked;
 
                 return (
                   <button
@@ -429,6 +450,8 @@ export default function BookingCalendar({
                     aria-label={
                       past
                         ? `${date.getDate()} ${MONTH_LABELS[date.getMonth()]} — past date`
+                        : blocked
+                        ? `${date.getDate()} ${MONTH_LABELS[date.getMonth()]} — unavailable`
                         : fullyBooked
                         ? `${date.getDate()} ${MONTH_LABELS[date.getMonth()]} — fully booked`
                         : !open
@@ -443,7 +466,7 @@ export default function BookingCalendar({
                         : "text-ink hover:bg-ink/5 border border-ink/15"
                     } ${isToday && !isSelected ? "ring-1 ring-gold-dark" : ""}`}
                   >
-                    <span className={fullyBooked ? "line-through decoration-2" : ""}>{date.getDate()}</span>
+                    <span className={fullyBooked || blocked ? "line-through decoration-2" : ""}>{date.getDate()}</span>
                   </button>
                 );
               })}

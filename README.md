@@ -335,6 +335,92 @@ is redeployed, test the same way against your live URL. Netlify's
 detail to see whether it's a validation issue, a missing env var, or a
 Resend API error.
 
+## Temporarily Blocking Dates (Admin)
+
+A private admin page lets you close a specific date (e.g. a day you're
+unavailable) without touching your normal weekly opening hours in
+`src/data/site.json`. Blocked dates apply to every visitor immediately —
+they're stored in [Netlify Blobs](https://docs.netlify.com/blobs/overview/),
+a key-value store included with your Netlify site (no separate account,
+no extra cost at this scale).
+
+### How it works
+
+```
+src/lib/blocked-dates.ts       Netlify Blobs read/write for the blocked-
+                                dates list (get/add/remove)
+src/lib/admin-session.ts       Signed, expiring session tokens (HMAC-
+                                SHA256) — no database, no raw password
+                                ever stored in a cookie
+
+src/app/api/admin/login/route.ts    POST — verifies the admin password,
+                                     sets an HttpOnly session cookie
+src/app/api/admin/logout/route.ts   POST — clears the session cookie
+src/app/api/blocked-dates/route.ts  GET (public) / POST + DELETE (admin-only)
+
+src/app/admin/blocked-dates/page.tsx        The admin page itself
+src/components/admin/AdminLoginForm.tsx     Password form (shown when logged out)
+src/components/admin/BlockedDatesManager.tsx Block/unblock UI (shown when logged in)
+```
+
+Blocking a date does **not** modify `site.json` or your recurring weekly
+hours in any way — it's a separate, small exception list layered on top.
+Unblocking removes the exception; the date simply reverts to whatever your
+normal weekly hours say.
+
+### Using the admin page
+
+1. Go to `https://<your-site>/admin/blocked-dates`
+2. Enter your admin password (see `ADMIN_SECRET` below) and log in
+3. Pick a date and click **Block Date** — it appears in the "Currently
+   Blocked Dates" list immediately, struck through
+4. To reopen a date, find it in the list and click **Unblock**
+5. Click **Log Out** when you're done (sessions also auto-expire after 8
+   hours regardless)
+
+The public booking calendar picks up changes the next time a visitor loads
+the `/booking` page — there's nothing else to do.
+
+### Security
+
+- The admin page itself is a **server component**: it checks your session
+  cookie on the server before deciding whether to render the login form or
+  the management UI, so the page's protected content never even reaches
+  the browser for an unauthenticated visitor.
+- Logging in does **not** store your password anywhere. `ADMIN_SECRET` is
+  read once, server-side, to verify what you typed — then a signed,
+  time-limited session token is generated and set as an **HttpOnly**
+  cookie (JavaScript cannot read it, even via XSS) that's also `Secure`
+  (HTTPS-only in production) and `SameSite=Strict`.
+- `POST`/`DELETE /api/blocked-dates` (the only endpoints that can change
+  anything) independently re-check that session cookie server-side on
+  every request — there is no way to add or remove a blocked date without
+  a valid session, regardless of how the request is made.
+- `GET /api/blocked-dates` is intentionally public with no admin
+  information in its response — it only returns a plain list of dates, so
+  the booking calendar can grey them out for every visitor.
+- The admin page is excluded from `robots.txt` and marked `noindex`, and
+  is not linked from any navigation or sitemap — it's reachable only by
+  URL, on top of the password gate.
+
+### Environment variable
+
+Add **one** new variable, alongside the email ones:
+
+| Variable | Notes |
+|---|---|
+| `ADMIN_SECRET` | The password for `/admin/blocked-dates`. Choose a long, random value — this is the only thing protecting your booking calendar's availability. Set it in `.env.local` for local development and in Netlify's **Site settings → Environment variables** for production (never in `netlify.toml` — see the note already in that file). |
+
+### Local development note
+
+Netlify Blobs needs a real Netlify deployment context to authenticate,
+which plain `next dev`/`next start` doesn't have. When that context is
+missing, `src/lib/blocked-dates.ts` automatically falls back to a small
+temporary file on your machine so you can still fully test blocking,
+unblocking, and the booking rejection locally — **this fallback is never
+used on Netlify itself**, where real Netlify Blobs takes over
+automatically with zero configuration.
+
 ## Images
 
 Hero, treatment, gallery and team images are original photography and
